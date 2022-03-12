@@ -9,7 +9,7 @@ module.exports = {
     },
     rinkeby: {
       url: proccess.env.API_ENDPOINT,
-      accounts: [privateKey1, privateKey2, ...]
+      accounts: [process.env.API_KEY]
     }
   },
   solidity: {
