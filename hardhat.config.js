@@ -8,7 +8,7 @@ module.exports = {
     hardhat: {
     },
     rinkeby: {
-      url: proccess.env.API_ENDPOINT,
+      url: process.env.API_ENDPOINT,
       accounts: [process.env.API_KEY]
     }
   },
