@@ -26,6 +26,12 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
+    - run: |
+          touch .env
+          echo API_ENDPOINT=${{ secrets.API_ENDPOINT }} >> .env
+          echo API_KEY=${{ secrets.API_KEY }} >> .env
+          cat .env
+
     - run: yarn install
     - run: yarn unstoppable
     - run: yarn test
