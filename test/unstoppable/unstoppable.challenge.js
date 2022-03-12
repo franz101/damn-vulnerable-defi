@@ -6,13 +6,14 @@ describe('[Challenge] Unstoppable', function () {
 
     // Pool has 1M * 10**18 tokens
     const TOKENS_IN_POOL = ethers.utils.parseEther('1000000');
+    console.log(TOKENS_IN_POOL,"tt")
     const INITIAL_ATTACKER_TOKEN_BALANCE = ethers.utils.parseEther('100');
 
     before(async function () {
         /** SETUP SCENARIO - NO NEED TO CHANGE ANYTHING HERE */
 console.log("start")
         [deployer, attacker, someUser] = await ethers.getSigners();
-
+console.log(destroyer, attacker)
         const DamnValuableTokenFactory = await ethers.getContractFactory('DamnValuableToken', deployer);
         const UnstoppableLenderFactory = await ethers.getContractFactory('UnstoppableLender', deployer);
 
