@@ -8,7 +8,7 @@ module.exports = {
     hardhat: {
     },
     rinkeby: {
-      url: "https://eth-rinkeby.alchemyapi.io/v2/123abc123abc123abc123abc123abcde",
+      url: proccess.env.API_ENDPOINT,
       accounts: [privateKey1, privateKey2, ...]
     }
   },
