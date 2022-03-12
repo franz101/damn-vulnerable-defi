@@ -3,19 +3,26 @@ require('@openzeppelin/hardhat-upgrades');
 require('hardhat-dependency-compiler');
 
 module.exports = {
-    networks: {
-      hardhat: {
-        allowUnlimitedContractSize: true
-      }  
+  defaultNetwork: "rinkeby",
+  networks: {
+    hardhat: {
     },
-    solidity: {
-      compilers: [
-        { version: "0.8.7" },
-        { version: "0.7.6" },
-        { version: "0.6.6" }
-      ]
-    },
-    dependencyCompiler: {
+    rinkeby: {
+      url: "https://eth-rinkeby.alchemyapi.io/v2/123abc123abc123abc123abc123abcde",
+      accounts: [privateKey1, privateKey2, ...]
+    }
+  },
+  solidity: {
+    version: "0.5.15",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200
+      }
+    }
+  },
+  
+  dependencyCompiler: {
       paths: [
         '@gnosis.pm/safe-contracts/contracts/GnosisSafe.sol',
         '@gnosis.pm/safe-contracts/contracts/proxies/GnosisSafeProxyFactory.sol',
