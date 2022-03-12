@@ -28,8 +28,8 @@ jobs:
         cache: 'yarn'
     - run: |
           touch .env
-          echo API_ENDPOINT=${{ secrets.dev.API_ENDPOINT }} >> .env
-          echo API_KEY=${{ secrets.dev.API_KEY }} >> .env
+          echo API_ENDPOINT=${{ secrets.API_ENDPOINT }} >> .env
+          echo API_KEY=${{ secrets.API_KEY }} >> .env
           cat .env
 
     - run: yarn install
