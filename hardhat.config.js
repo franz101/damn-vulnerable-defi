@@ -9,8 +9,8 @@ module.exports = {
     hardhat: {
     },
     rinkeby: {
-      url: process.env.API_ENDPOINT
-      //,accounts: [process.env.API_KEY]
+      url: process.env.API_ENDPOINT,
+  accounts: [`0x${PRIVATE_KEY}`]
     }
   },
       solidity: {
