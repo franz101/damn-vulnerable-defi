@@ -10,7 +10,7 @@ module.exports = {
     },
     rinkeby: {
       url: process.env.API_ENDPOINT,
-  accounts: [`0x${PRIVATE_KEY}`]
+      //accounts: [`0x${PRIVATE_KEY}`]
     }
   },
       solidity: {
