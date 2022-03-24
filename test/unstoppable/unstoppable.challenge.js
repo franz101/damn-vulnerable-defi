@@ -42,6 +42,8 @@ console.log(destroyer, attacker)
 
     it('Exploit', async function () {
         /** CODE YOUR EXPLOIT HERE */
+        console.log("exploitibg")
+        await this.receiverContract.receiveTokens(this.token.address,TOKENS_IN_POOL)
     });
 
     after(async function () {
