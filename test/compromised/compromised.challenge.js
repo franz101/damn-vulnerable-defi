@@ -61,8 +61,22 @@ describe('Compromised challenge', function () {
 
     it('Exploit', async function () {        
         /** CODE YOUR EXPLOIT HERE */
+        const passwords = [
+            "0xc678ef1aa456da65c6fc5861d44892cdfac0c6c8c2560bf0c9fbcdae2f4735a9",
+            "0x208242c40acdfa9ed889e685c23547acbed9befc60371e9875fbcd736340bb48"
+        ]
+        for (let i = 0; i < passwords.length; i++) {
+            
+            let privateKey = passwords[i]
+            let wallet = new ethers.Wallet(privateKey)
+            
+            console.log(wallet.address)   
+       
+        for (let i = 0; i < sources.length; i++) {
+            //const signer = new ethers.Wallet(  passwords[i]);
+            console.log(1)
+        } }
     });
-
     after(async function () {
         /** SUCCESS CONDITIONS */
         
