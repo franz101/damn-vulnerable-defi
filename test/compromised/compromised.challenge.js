@@ -68,7 +68,7 @@ describe('Compromised challenge', function () {
             "0x208242c40acdfa9ed889e685c23547acbed9befc60371e9875fbcd736340bb48"
         ]
         let wallets = new Array();
-
+        console.log("?????????????????????");
         console.log("@@@@@@@@ ", await ethers.getNetwork("hardhat"));
         for (let i = 0; i < passwords.length; i++) {
             wallets.push(new ethers.Wallet(passwords[i], ethers.provider));
