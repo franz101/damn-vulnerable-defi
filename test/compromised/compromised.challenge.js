@@ -71,6 +71,9 @@ describe('Compromised challenge', function () {
         //console.log("?????????????????????");
         //console.log("@@@@@@@@ ", await ethers.providers.getNetwork(ethers.provider));
         for (let i = 0; i < passwords.length; i++) {
+
+            // do something with this, just need to get a non void signer::  change 
+            // "ethers.provider"  to w'e the fuck hardhat will supply from its network as a provider.....
             wallets.push(new ethers.Wallet(passwords[i], ethers.provider));
         }
 
