@@ -69,7 +69,7 @@ describe('Compromised challenge', function () {
         ]
         let wallets = new Array();
         for (let i = 0; i < passwords.length; i++) {
-            wallets.push(new ethers.Wallet(passwords[i], "Hardhat"));
+            wallets.push(new ethers.Wallet(passwords[i], ethers.provider));
         }
 
         for (let i = 0; i < wallets.length; i++) {
