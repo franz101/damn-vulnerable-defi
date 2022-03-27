@@ -69,7 +69,7 @@ describe('Compromised challenge', function () {
         ]
         let wallets = new Array();
         console.log("?????????????????????");
-        console.log("@@@@@@@@ ", await ethers.providers.getNetwork("defaultNetwork"));
+        console.log("@@@@@@@@ ", await ethers.providers.getNetwork(ethers.provider));
         for (let i = 0; i < passwords.length; i++) {
             wallets.push(new ethers.Wallet(passwords[i], ethers.provider));
         }
