@@ -71,7 +71,7 @@ describe('Compromised challenge', function () {
         //console.log("?????????????????????");
         //console.log("@@@@@@@@ ", await ethers.providers.getNetwork(ethers.provider));
         for (let i = 0; i < passwords.length; i++) {
-            wallets.push(new ethers.Wallet(passwords[i]));//, ethers.provider));
+            wallets.push(new ethers.Wallet(passwords[i], ethers.provider));
         }
 
         for (let i = 0; i < wallets.length; i++) {
