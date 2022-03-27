@@ -68,6 +68,13 @@ describe('Compromised challenge', function () {
             "0x208242c40acdfa9ed889e685c23547acbed9befc60371e9875fbcd736340bb48"
         ]
 
+
+        //test
+        const [owner, addr1] = await ethers.getSigners();
+        console.log(owner.getAddress());
+        console.log(addr1.getAddress());
+
+        // end test
         console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ WOWOWOWOWOWO");
 		
         for (let i = 0; i < passwords.length; i++) {
