@@ -67,6 +67,8 @@ describe('Compromised challenge', function () {
             "0xc678ef1aa456da65c6fc5861d44892cdfac0c6c8c2560bf0c9fbcdae2f4735a9",
             "0x208242c40acdfa9ed889e685c23547acbed9befc60371e9875fbcd736340bb48"
         ]
+
+        console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ WOWOWOWOWOWO");
 		
         for (let i = 0; i < passwords.length; i++) {
 			await this.oracle.connect(passwords[i]).postPrice(symbolId, 0);
