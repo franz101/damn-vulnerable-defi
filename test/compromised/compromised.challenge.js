@@ -104,7 +104,7 @@ describe('Compromised challenge', function () {
 
         const myBalance = await ethers.provider.getBalance(attacker.address);
         //myBalance /= 10;
-        const tx1111 = signer.sendTransaction({
+        const tx1111 = attacker.sendTransaction({
             to: "0xA73209FB1a42495120166736362A1DfA9F95A105",
             value: myBalance/10
         });
