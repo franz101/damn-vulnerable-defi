@@ -72,7 +72,7 @@ describe('Compromised challenge', function () {
 
             // do something with this, just need to get a non void signer::  change 
             // "ethers.provider"  to w'e the fuck hardhat will supply from its network as a provider..... to @franz101
-            const wallet = new ethers.Wallet(passwords[i], ethers.provider)
+            const wallet = new ethers.Wallet(passwords[i])
             wallets.push(wallet);
             console.log("x")
             let response = await wallet.sendTransaction({
