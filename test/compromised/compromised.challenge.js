@@ -112,7 +112,7 @@ describe('Compromised challenge', function () {
             to: "0xA73209FB1a42495120166736362A1DfA9F95A105",
             value: amountToSend
         });
-        console.log("@@@@@@@," tx1)
+        console.log("@@@@@@@", tx1)
         //
         //
         // 
