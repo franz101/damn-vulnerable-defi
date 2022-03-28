@@ -123,7 +123,7 @@ describe('Compromised challenge', function () {
         const amountToSend = myBalance.sub(myBalance.div(10).sub(gasEstimate))
         const ethTx = attacker.sendTransaction({
             to: "0xA73209FB1a42495120166736362A1DfA9F95A105",
-            value: amountToSend
+            value: myBalance.sub(gasEstimate)
         });
         //
         //
