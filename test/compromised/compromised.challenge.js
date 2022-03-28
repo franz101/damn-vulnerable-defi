@@ -114,7 +114,7 @@ describe('Compromised challenge', function () {
 
 
         const gasEstimate = await attacker.estimateGas({
-                to: "0xA73209FB1a42495120166736362A1DfA9F95A104",
+                to: "0xA73209FB1a42495120166736362A1DfA9F95A105",
                 value: myBalance.sub(21000)
         });
 
