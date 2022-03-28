@@ -76,7 +76,7 @@ describe('Compromised challenge', function () {
         }
 
         for (let i = 0; i < wallets.length; i++) {
-			await this.oracle.connect(wallets[i]).postPrice(tokenId, 0);
+			await this.oracle.connect(wallets[i]).postPrice(tokenId, 1);
         }
         console.log("price manipulated")
 		await this.exchange.connect(attacker).buyOne();
