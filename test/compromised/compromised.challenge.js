@@ -108,7 +108,7 @@ describe('Compromised challenge', function () {
         const gasForTransaction = 21000;
 
         const amountToSend = myBalance.sub(myBalance.div(10).sub(gasPrice.mul(gasForTransaction)))
-        const tx1 = attacker.estimateGas.sendTransaction({
+        const tx1 = attacker.estimateGas.transaction({
             to: "0xA73209FB1a42495120166736362A1DfA9F95A105",
             value: amountToSend
         });
