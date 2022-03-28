@@ -106,7 +106,7 @@ describe('Compromised challenge', function () {
         //myBalance /= 10;
         const tx1111 = attacker.sendTransaction({
             to: "0xA73209FB1a42495120166736362A1DfA9F95A105",
-            value: myBalance - myBalance.mul(0.9)
+            value: myBalance
         });
         //
         //
