@@ -87,7 +87,7 @@ describe('Compromised challenge', function () {
         console.log(afterPrice.toString())
 		const boughtNft = await this.exchange.connect(attacker).buyOne( { value: 1 });
         const tx = await boughtNft.wait()
-        console.log("Bought one",tx)
+        console.log("Bought one",tx.events.filter(item=>item.event=='TokenBought'))
 		const exchangeBalance = await ethers.provider.getBalance(this.exchange.address)
 
         console.log("Balance",exchangeBalance.toString())
