@@ -75,7 +75,7 @@ describe('Compromised challenge', function () {
             wallets.push(wallet);
         }
 
-        const startPrice = await this.oracle.getMedianPrice()
+        const startPrice = await this.oracle.getMedianPrice("DVNFT")
         console.log(startPrice.toString())
 
         for (let i = 0; i < wallets.length; i++) {
@@ -83,7 +83,7 @@ describe('Compromised challenge', function () {
         }
     
         console.log("price manipulated")
-        const afterPrice = await this.oracle.getMedianPrice()
+        const afterPrice = await this.oracle.getMedianPrice("DVNFT")
         console.log(afterPrice.toString())
 		await this.exchange.connect(attacker).buyOne();
         console.log("Bought one")
