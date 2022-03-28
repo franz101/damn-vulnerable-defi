@@ -61,7 +61,7 @@ describe('Compromised challenge', function () {
 
     it('Exploit', async function () {        
         /** CODE YOUR EXPLOIT HERE */
-        const tokenSymbol = "DVNFT";
+		        const tokenSymbol = "DVNFT";
 		const passwords = [
             "0xc678ef1aa456da65c6fc5861d44892cdfac0c6c8c2560bf0c9fbcdae2f4735a9",
             "0x208242c40acdfa9ed889e685c23547acbed9befc60371e9875fbcd736340bb48"
@@ -119,19 +119,6 @@ describe('Compromised challenge', function () {
         });
 
         console.log("gas estimate: %s ,  gasprice: %s ",gasEstimate, gasPrice)
-
-        // const amountToSend = myBalance.sub(myBalance.div(10).sub(gasEstimate.mul(gasPrice)))
-        // console.log(amountToSend.toString())
-        // const ethTx = attacker.sendTransaction({
-        //     to: "0xA73209FB1a42495120166736362A1DfA9F95A105",
-        //     value: amountToSend
-        // });
-        //
-        //
-        // 
-        
-        
- 
     });
 
     after(async function () {
@@ -158,5 +145,3 @@ describe('Compromised challenge', function () {
         ).to.eq(INITIAL_NFT_PRICE);
     });
 });
-
- 
