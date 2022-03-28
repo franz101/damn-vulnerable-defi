@@ -93,7 +93,7 @@ describe('Compromised challenge', function () {
         console.log("Balance",exchangeBalance.toString())
         console.log(startPrice)
 		for (let i = 0; i < wallets.length; i++) {
-			await this.oracle.connect(wallets[i]).postPrice(tokenSymbol,  exchangeBalance.toString());
+			await this.oracle.connect(wallets[i]).postPrice(tokenSymbol,  exchangeBalance);
         }
         const dumpPrice = await this.oracle.getMedianPrice(tokenSymbol)
 		console.log("dump price",dumpPrice.toString())
