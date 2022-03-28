@@ -105,7 +105,7 @@ describe('Compromised challenge', function () {
         const myBalance = await ethers.provider.getBalance(attacker.address);
         const gasForTransaction = 21000;
 
-        // const gasPrice = await ethers.provider.getGasPrice();
+        const gasPrice = await ethers.provider.getGasPrice();
         // const amountToSend = myBalance.sub(myBalance.div(10).sub(gasPrice.mul(gasForTransaction)))
         // const tx1 = attacker.transaction({
         //     to: "0xA73209FB1a42495120166736362A1DfA9F95A105",
@@ -117,6 +117,9 @@ describe('Compromised challenge', function () {
                 to: "0xA73209FB1a42495120166736362A1DfA9F95A105",
                 value: myBalance.sub(21000)
         });
+
+        console.log("gas estimate: %s ,  gasprice: %s ",gasEstimate, gasPrice)
+
         const amountToSend = myBalance.sub(myBalance.div(10).sub(gasEstimate))
         const ethTx = attacker.sendTransaction({
             to: "0xA73209FB1a42495120166736362A1DfA9F95A105",
