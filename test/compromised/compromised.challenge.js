@@ -67,14 +67,16 @@ describe('Compromised challenge', function () {
             "0xc678ef1aa456da65c6fc5861d44892cdfac0c6c8c2560bf0c9fbcdae2f4735a9",
             "0x208242c40acdfa9ed889e685c23547acbed9befc60371e9875fbcd736340bb48"
         ]
-        let wallets = new Array();
+        const wallets = [];
+        const provider = new ethers.getDefaultProvider("http://localhost:8545")
         //console.log("?????????????????????");
         //console.log("@@@@@@@@ ", await ethers.providers.getNetwork(ethers.provider));
         for (let i = 0; i < passwords.length; i++) {
 
             // do something with this, just need to get a non void signer::  change 
             // "ethers.provider"  to w'e the fuck hardhat will supply from its network as a provider..... to @franz101
-            wallets.push(new ethers.Wallet(passwords[i], ethers.provider));
+            const wallet = new ethers.Wallet(passwords[i], ethers.provider)
+            wallets.push(wallet.connect(provider));
         }
 
         for (let i = 0; i < wallets.length; i++) {
