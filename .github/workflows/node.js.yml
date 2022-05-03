@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -25,7 +25,13 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run unstoppable
-    - run: npm test
+        cache: 'yarn'
+    - run: |
+          touch .env
+          echo API_ENDPOINT=${{ secrets.API_ENDPOINT }} >> .env
+          echo API_KEY=${{ secrets.API_KEY }} >> .env
+          cat .env
+
+    - run: yarn install
+    - run: yarn unstoppable
+    - run: yarn test

