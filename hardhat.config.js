@@ -4,19 +4,24 @@ require('hardhat-dependency-compiler');
 require('dotenv').config()
 
 module.exports = {
-    networks: {
-      hardhat: {
-        allowUnlimitedContractSize: true
-      }  
+  defaultNetwork: "rinkeby",
+  networks: {
+    hardhat: {
     },
-    solidity: {
+    rinkeby: {
+      url: process.env.API_ENDPOINT,
+      //accounts: [`0x${PRIVATE_KEY}`]
+    }
+  },
+      solidity: {
       compilers: [
         { version: "0.8.7" },
         { version: "0.7.6" },
         { version: "0.6.6" }
       ]
     },
-    dependencyCompiler: {
+  
+  dependencyCompiler: {
       paths: [
         '@gnosis.pm/safe-contracts/contracts/GnosisSafe.sol',
         '@gnosis.pm/safe-contracts/contracts/proxies/GnosisSafeProxyFactory.sol',
