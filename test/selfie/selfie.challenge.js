@@ -30,7 +30,7 @@ describe('[Challenge] Selfie', function () {
     });
 
     it('Exploit', async function () {
-                /** CODE YOUR EXPLOIT HERE */
+    /** CODE YOUR EXPLOIT HERE */
 		const SelfieExploitFactory = await ethers.getContractFactory('SelfieExploit', attacker);
 		const SelfieExploit = await SelfieExploitFactory.deploy(this.pool.address, this.governance.address);
 		await SelfieExploit.connect(attacker).setupAttack();
@@ -42,7 +42,7 @@ describe('[Challenge] Selfie', function () {
 
     after(async function () {
         /** SUCCESS CONDITIONS */
-
+       
         // Attacker has taken all tokens from the pool
         expect(
             await this.token.balanceOf(attacker.address)
